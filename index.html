@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <link rel="stylesheet" href="./assets/css/index.css" />
+    <link rel="shortcut icon" href="./public/logo.png" type="image/x-icon" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"></script>
+    <title>MOCMA</title>
+  </head>
+  <body>
+    <header>
+      <nav class="navbar navbar-dark bg-dark">
+        <div class="container">
+          <center>
+            <img src="./public/logo.png" alt="Free Note's logo" />
+          </center>
+          <h1 class="text-light">MOCMA</h1>
+        </div>
+      </nav>
+    </header>
+
+    <section>
+      <div class="container section-container">
+        <!-- form container -->
+        <div class="form-container">
+          <h2 id="edit-add">Add Note</h2>
+          <br />
+          <hr />
+          <br />
+          <form>
+            <input
+              type="text"
+              id="note-title"
+              class="note-title"
+              placeholder="Note title"
+            />
+            <textarea
+              class="note-text"
+              id="note-text"
+              cols="30"
+              rows="10"
+              placeholder="Note details"
+            ></textarea>
+            <button id="add-btn" class="btn">Add Note</button>
+          </form>
+          <p class="errors" id="errors"></p>
+        </div>
+
+        <!-- notes container -->
+        <div class="notes-container">
+          <div class="container">
+            <div class="notes-header">
+              <h2>Your Notes</h2>
+              <button class="clear note-btn">Delete all notes</button>
+              <!-- <button onclick="createPDF()">Save</button> -->
+            </div>
+            <br />
+            <hr />
+
+            <div id="notes">
+              <!-- <div class="note">
+                  <div class="note-cta">
+                    <p class="note-counter">Note ${index + 1}</p>
+                    <br>
+                    <div class="note-cta-btn">
+                      <button id="${index}" onclick="deleteNote(this.id)" class="note-btn">
+                        <i class="fas fa-trash"></i> Delete
+                      </button>
+                      <button id="${index}" onclick="editNote(this.id)" class="note-btn edit-btn">
+                        <i class="fas fa-edit"></i> Edit
+                      </button>
+                      <button id="${index}" onclick="generatePDF()" class="note-btn dl-btn">
+                        <i class="fas fa-edit"></i> Save
+                      </button>
+                    </div>
+                  </div>
+                  <br>
+                  <hr />
+                  <br>
+                  <div class="note-elements">
+                  <h3 class="note-title">Title: ${element.title}</h3>
+                  <br>
+                  <p class="note-text">${element.text}</p>
+                  </div>
+                </div> -->
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+    <script>
+      function generatePDF() {
+        //nom du fichier | file name
+        var nom_fichier = "free-notes";
+        //generer le pdf
+        var element = "${element.text}";
+        var opt = {
+          margin: 0.5,
+          filename: `${nom_fichier}.pdf`,
+          image: { type: "jpeg", quality: 1 },
+          html2canvas: { scale: 2 },
+          jsPDF: { unit: "in", format: "letter", orientation: "portrait" },
+        };
+        if (nom_fichier != null) {
+          html2pdf().set(opt).from(element).save();
+        } else {
+          alert("Please choose a name");
+        }
+      }
+    </script>
+    <script src="./assets/js/index.js"></script>
+  </body>
+</html>

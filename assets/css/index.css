@@ -1,0 +1,182 @@
+@import url("https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;400;600;700&display=swap");
+
+:root {
+  --white: #fff;
+  --black: #1c2b2d;
+  --blue: #13678a;
+  --color-primary: #45c4b0;
+  --grey: #dafdba;
+  --dark-grey: #222831;
+  --other: #9aeba3;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html {
+  font-size: 10px;
+}
+
+body {
+  font-family: "Open Sans", sans-serif;
+  background-color: var(--grey);
+}
+
+p {
+  font-size: 1.6rem;
+  line-height: 1.5;
+}
+
+img {
+  width: 15%;
+}
+
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 20px;
+}
+
+/* Start Here */
+.section-container {
+  display: flex;
+  padding-top: 2rem;
+  width: 100%;
+}
+
+.btn {
+  background-color: var(--color-primary);
+  color: var(--black);
+  border-radius: 15px;
+}
+.btn:hover {
+  background-color: var(--blue);
+  color: var(--white);
+  transition: 0.5s;
+}
+
+.note-title {
+  background-color: var(--color-primary);
+  border: 2px solid var(--black);
+  border-radius: 15px;
+}
+.note-title:hover {
+  background-color: var(--blue);
+  color: var(--white);
+  transition: 0.5s;
+}
+
+.note-text {
+  background-color: var(--color-primary);
+  border: 2px solid var(--black);
+  border-radius: 15px;
+}
+.note-text:hover {
+  background-color: var(--blue);
+  color: var(--white);
+  transition: 0.5s;
+}
+
+.form-container {
+  width: 30%;
+}
+.notes-container {
+  width: 70%;
+}
+
+form > * {
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 5px;
+  outline: none;
+  font-size: 1.6rem;
+  padding: 7px;
+  border: 1px solid #777;
+  border-radius: 3px;
+  width: 100%;
+}
+
+form textarea {
+  height: 10rem;
+}
+
+.notes-header {
+  display: flex;
+  justify-content: space-between;
+}
+
+.note {
+  background-color: var(--grey);
+  padding: 10px;
+  border-radius: 3px;
+  margin: 1rem 0;
+  border-radius: 15px;
+}
+
+.errors {
+  color: red;
+  font-size: large;
+  text-decoration: underline;
+}
+
+.note-cta {
+  display: flex;
+  justify-content: space-between;
+}
+
+.note-counter {
+  font-size: 1.4rem;
+  background-color: var(--color-primary);
+  padding: 10px;
+  display: inline-block;
+  color: var(--dark-grey);
+  font-weight: 600;
+  border-radius: 15px;
+}
+.note-counter:hover {
+  background-color: var(--blue);
+  color: var(--white);
+  transition: 0.5s;
+}
+
+.note-btn {
+  padding: 5px;
+  outline: none;
+  border: 2px solid var(--black);
+  border-radius: 15px;
+  background-color: var(--color-primary);
+  color: var(--black);
+  cursor: pointer;
+}
+.note-btn:hover {
+  background-color: var(--blue);
+  color: var(--white);
+  transition: 0.5s;
+}
+
+.edit-btn {
+  background-color: var(--color-primary);
+}
+
+.note-title {
+  font-size: 1.6rem;
+  font-weight: 600;
+  color: var(--dark-grey);
+}
+.note-title:hover {
+  background-color: var(--blue);
+  color: var(--white);
+  transition: 0.5s;
+}
+
+.note-text {
+  font-size: 1.4rem;
+}
+.note-text:hover {
+  background-color: var(--blue);
+  color: var(--white);
+  transition: 0.5s;
+}
