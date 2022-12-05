@@ -2,7 +2,7 @@
   "name": "mocma",
   "productName": "MOCMA Notes",
   "productDescription": "A free and open source note app",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "MOCMA notes",
   "main": "app.js",
   "scripts": {
