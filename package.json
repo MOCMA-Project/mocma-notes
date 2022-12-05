@@ -7,7 +7,8 @@
   "main": "app.js",
   "scripts": {
     "start": "electron .",
-    "deb64": "electron-installer-debian --src ./Free-Note-linux-x64/ --dest /build/ --arch amd64",
+    "build": "electron-builder build --mac --win --publish never",
+    "deploy": "electron-builder build --mac --win --publish always",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "keywords": [
@@ -17,6 +18,16 @@
     "app",
     "desktop"
   ],
+  "build": {
+    "publish": [
+      {
+        "provider": "github",
+        "owner": "MOCMA-Project",
+        "repo": "mocma-notes",
+        "token": "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"
+      }
+    ]
+  },
   "repository": {
     "type": "git",
     "url": "https://github.com/MOCMA-Project/mocma-notes.git"
@@ -24,15 +35,17 @@
   "author": "Maël C.",
   "license": "ISC",
   "dependencies": {
-    "electron": "^20.1.0",
     "electron-forge": "^5.2.4",
     "electron-icon-builder": "^2.0.1",
     "electron-packager": "^16.0.0",
+    "electron-updater": "^5.3.0",
     "os-utils": "^0.0.14",
     "path": "^0.12.7",
     "pdfmake": "^0.2.5"
   },
   "devDependencies": {
+    "electron": "^22.0.0",
+    "electron-builder": "^23.6.0",
     "electron-installer-debian": "^3.1.0",
     "electron-installer-dmg": "^4.0.0",
     "electron-installer-zip": "^0.1.2",
