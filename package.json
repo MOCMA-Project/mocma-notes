@@ -29,10 +29,6 @@
       "icon": "./public/best-logo.png"
     }
   },
-  "repository": {
-    "type": "git",
-    "url": "https://github.com/MOCMA-Project/mocma-notes.git"
-  },
   "author": "Maël C.",
   "license": "ISC",
   "dependencies": {
