@@ -163,6 +163,8 @@ form textarea {
 
 .note-title {
   font-size: 1.6rem;
+  width: 100%;
+  padding: 5px;
   font-weight: 600;
   color: var(--dark-grey);
 }
@@ -174,22 +176,16 @@ form textarea {
 
 .note-text {
   font-size: 1.4rem;
+  padding: 5px;
+  width: 100%;
 }
 .note-text:hover {
   background-color: var(--blue);
   color: var(--white);
   transition: 0.5s;
 }
-#notification {
-  position: fixed;
-  bottom: 20px;
-  left: 20px;
-  width: 200px;
-  padding: 20px;
-  border-radius: 5px;
-  background-color: white;
-  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
-}
-.hidden {
-  display: none;
+.search-bar {
+  background-color: var(--color-primary);
+  border-radius: 15px;
+  padding: 10px;
 }

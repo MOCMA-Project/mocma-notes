@@ -8,7 +8,7 @@
   "scripts": {
     "start": "electron .",
     "build": "electron-builder build --mac --win --publish never",
-    "deploy": "electron-builder build --mac --win --publish always",
+    "deploy": "electron-builder build --mac --win --linux",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "keywords": [
@@ -19,14 +19,15 @@
     "desktop"
   ],
   "build": {
-    "publish": [
-      {
-        "provider": "github",
-        "owner": "MOCMA-Project",
-        "repo": "mocma-notes",
-        "token": "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"
-      }
-    ]
+    "mac": {
+      "icon": "./public/best-logo.png"
+    },
+    "win": {
+      "icon": "./public/best-logo.png"
+    },
+    "linux": {
+      "icon": "./public/best-logo.png"
+    }
   },
   "repository": {
     "type": "git",

@@ -1,6 +1,9 @@
-const { app, BrowserWindow, Menu } = require("electron");
+const { app, BrowserWindow, Notification } = require("electron");
 const path = require("path");
-const { autoUpdater } = require("electron-updater");
+const fs = require("fs");
+const https = require("https");
+const Shell = require("electron").shell;
+const notes = "1.0.0";
 
 const createWindow = () => {
   const mainWindow = new BrowserWindow({
@@ -17,38 +20,65 @@ const createWindow = () => {
   mainWindow.loadFile("index.html");
 };
 
-app.whenReady().then(() => {
-  autoUpdater.checkForUpdatesAndNotify();
-  createWindow();
+const NOTIFICATION_TITLE_UPDATE_YES = "Your application is up to date !";
+const NOTIFICATION_BODY_UPDATE_YES = "You have the last version of MOCMA Notes";
 
-  app.on("activate", () => {
-    if (BrowserWindow.getAllWindows().length === 0) createWindow();
-  });
+const NOTIFICATION_TITLE_UPDATE_NO = "Your app is not update !";
+const NOTIFICATION_BODY_UPDATE_NO =
+  "A new tab has been opened in your main web browser to update the app";
+
+function showNotificationUpdateYes() {
+  new Notification({
+    title: NOTIFICATION_TITLE_UPDATE_YES,
+    body: NOTIFICATION_BODY_UPDATE_YES,
+    icon: "./public/logo.png",
+    closeButtonText: "Ok thanks !",
+  }).show();
+}
+
+function showNotificationUpdateNo() {
+  new Notification({
+    title: NOTIFICATION_TITLE_UPDATE_NO,
+    body: NOTIFICATION_BODY_UPDATE_NO,
+    icon: "./public/logo.png",
+    closeButtonText: "I have understand thanks !",
+    click: Shell.openExternal("https://mocma-project.github.io/download.html"),
+  }).show();
+}
+
+app.whenReady().then(() => {
+  https
+    .get("https://mocma-project.github.io/notes.txt", (resp) => {
+      let content = "";
+
+      // Un morceau de réponse est reçu
+      resp.on("data", (chunk) => {
+        content += chunk;
+      });
+
+      // La réponse complète à été reçue. On affiche le résultat.
+      resp.on("end", () => {
+        console.log(notes);
+        console.log(content);
+        if (content === notes) {
+          showNotificationUpdateYes();
+          console.log("Yes");
+        } else {
+          showNotificationUpdateNo();
+          console.log("No");
+        }
+      });
+    })
+    .on("error", (err) => {
+      console.log("Error: " + err.message);
+    });
+  createWindow();
 });
-autoUpdater.on("update-available", () => {
-  mainWindow.webContents.send("update_available");
-});
-autoUpdater.on("update-downloaded", () => {
-  mainWindow.webContents.send("update_downloaded");
+
+app.on("activate", () => {
+  if (BrowserWindow.getAllWindows().length === 0) createWindow();
 });
 
 app.on("window-all-closed", () => {
   if (process.platform !== "darwin") app.quit();
 });
-
-// const menu = Menu.buildFromTemplate([
-//   {
-//     label: "MOCMA Notes",
-//     submenu: [
-//       {
-//         label: "Quit Free Note",
-//         click: () => {
-//           app.quit();
-//         },
-//         accelerator: "CmdOrCtrl+Q",
-//       },
-//     ],
-//   },
-// ]);
-
-// Menu.setApplicationMenu(menu);

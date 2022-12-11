@@ -35,6 +35,7 @@
               id="note-title"
               class="note-title"
               placeholder="Note title"
+              autocomplete="off"
             />
             <textarea
               class="note-text"
@@ -42,6 +43,7 @@
               cols="30"
               rows="10"
               placeholder="Note details"
+              autocomplete="off"
             ></textarea>
             <button id="add-btn" class="btn">Add Note</button>
           </form>
@@ -53,6 +55,15 @@
           <div class="container">
             <div class="notes-header">
               <h2>Your Notes</h2>
+              <input
+                id="searchbar"
+                onkeyup="search_notes()"
+                type="text"
+                name="search"
+                class="search-bar"
+                placeholder="Search notes..."
+                autocomplete="off"
+              />
               <button class="clear note-btn">Delete all notes</button>
               <!-- <button onclick="createPDF()">Save</button> -->
             </div>
@@ -88,13 +99,6 @@
             </div>
           </div>
         </div>
-        <div id="notification" class="hidden">
-          <p id="message"></p>
-          <button id="close-button" onClick="closeNotification()">Close</button>
-          <button id="restart-button" onClick="restartApp()" class="hidden">
-            Restart
-          </button>
-        </div>
       </div>
     </section>
     <script>
@@ -118,11 +122,18 @@
       }
     </script>
     <script>
-      function closeNotification() {
-        notification.classList.add("hidden");
-      }
-      function restartApp() {
-        ipcRenderer.send("restart_app");
+      function search_notes() {
+        let input = document.getElementById("searchbar").value;
+        input = input.toLowerCase();
+        let x = document.getElementsByClassName("note");
+
+        for (i = 0; i < x.length; i++) {
+          if (!x[i].innerHTML.toLowerCase().includes(input)) {
+            x[i].style.display = "none";
+          } else {
+            x[i].style.display = "list-item";
+          }
+        }
       }
     </script>
     <script src="./assets/js/index.js"></script>
